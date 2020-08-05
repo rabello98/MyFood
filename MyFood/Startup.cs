@@ -22,7 +22,7 @@ namespace MyFood
         {
             services.AddControllers();
 
-            SimpleInjectorInit.Initialize(container, services);
+            SimpleInjectorInit.Initialize(container, services, Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

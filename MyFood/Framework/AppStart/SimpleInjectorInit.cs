@@ -1,20 +1,28 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using MyFood.Framework.Contracts.AppStart;
 using MyFood.Framework.Contracts.DAO;
 using MyFood.Framework.DAO;
 using SimpleInjector;
+using System.Configuration;
 
 namespace MyFood.Framework.AppStart
 {
     public static class SimpleInjectorInit
     {
-        public static void Initialize(Container container, IServiceCollection services)
+        public static IConfiguration Configuration { get; private set; }
+        public static void Initialize(Container container, IServiceCollection services, IConfiguration configuration)
         {
+            Configuration = configuration;
+
             services.AddSimpleInjector(container, options =>
             {
                 options.AddAspNetCore()
                     .AddControllerActivation();
             });
+
+            services.AddDbContext<MyFoodContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             InitializeContainer(container);
             ConfigAutoMapper(container);
