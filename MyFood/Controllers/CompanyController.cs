@@ -10,7 +10,7 @@ namespace MyFood.Controllers
     public class CompanyController : BaseApiController<CompanyView, Company>
     {
         public CompanyController(IRepository<Company> repository, 
-            IMapper mapper, IDependencyInjectionFacade resolver) : base(repository, mapper, resolver)
+            IMapper mapper, IMyFoodAppContext appContext) : base(repository, mapper, appContext)
         {
 
         }

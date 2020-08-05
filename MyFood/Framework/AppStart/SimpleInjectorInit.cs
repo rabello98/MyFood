@@ -34,6 +34,9 @@ namespace MyFood.Framework.AppStart
 
             var resolver = new DependencyInjectionFacade(container);
             container.RegisterInstance<IDependencyInjectionFacade>(resolver);
+
+            var appContext = new MyFoodAppContext(Configuration, resolver);
+            container.RegisterInstance<IMyFoodAppContext>(appContext);
         }
 
         private static void ConfigAutoMapper(Container container)
