@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MyFood.Framework.Contracts.AppStart;
+using MyFood.Framework.Contracts.Context;
 using MyFood.Framework.Contracts.DAO;
 
 namespace MyFood.Framework.Utils

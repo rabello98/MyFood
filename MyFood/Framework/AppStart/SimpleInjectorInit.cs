@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MyFood.Framework.Contracts.AppStart;
+using MyFood.Framework.Context;
+using MyFood.Framework.Contracts.Context;
 using MyFood.Framework.Contracts.DAO;
 using MyFood.Framework.DAO;
 using SimpleInjector;
-using System.Configuration;
 
 namespace MyFood.Framework.AppStart
 {

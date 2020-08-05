@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MyFood.Framework.Contracts.AppStart
+namespace MyFood.Framework.Contracts.Context
 {
     public interface IDependencyInjectionFacade
     {

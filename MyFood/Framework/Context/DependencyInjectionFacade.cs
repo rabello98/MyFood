@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using MyFood.Framework.Contracts.AppStart;
+using MyFood.Framework.Contracts.Context;
 using MyFood.Framework.Contracts.DAO;
 using SimpleInjector;
 using System;
 
-namespace MyFood.Framework.AppStart
+namespace MyFood.Framework.Context
 {
     public class DependencyInjectionFacade : IDependencyInjectionFacade
     {

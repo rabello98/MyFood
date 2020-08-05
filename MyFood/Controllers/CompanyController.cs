@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MyFood.Framework.Contracts.AppStart;
+using MyFood.Framework.Contracts.Context;
 using MyFood.Framework.Contracts.DAO;
 using MyFood.Framework.Utils;
 using MyFood.Model;
