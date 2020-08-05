@@ -7,9 +7,9 @@ using MyFood.ViewModel;
 
 namespace MyFood.Controllers
 {
-    public class CompanyController : BaseApiController<CompanyView, Company>
+    public class EmpresaController : BaseApiController<EmpresaView, Empresa>
     {
-        public CompanyController(IRepository<Company> repository, 
+        public EmpresaController(IRepository<Empresa> repository, 
             IMapper mapper, IMyFoodAppContext appContext) : base(repository, mapper, appContext)
         {
 
