@@ -8,5 +8,6 @@ namespace MyFood.Framework.Contracts.DAO
     public interface IRepository<TModel> where TModel : class
     {
         TModel GetById(String id);
+        IEnumerable<TModel> All();
     }
 }

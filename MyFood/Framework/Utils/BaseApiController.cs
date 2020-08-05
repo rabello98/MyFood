@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using MyFood.Framework.Contracts.Context;
 using MyFood.Framework.Contracts.DAO;
 
@@ -28,9 +27,10 @@ namespace MyFood.Framework.Utils
         }
 
         [HttpGet]
-        public virtual IEnumerable<string> Get()
+        public virtual IEnumerable<TModel> Get()
         {
-            return new string[] { "value1", "value2" };
+            var res = Repository.All();
+            return res;
         }
 
         [HttpGet("{id}")]

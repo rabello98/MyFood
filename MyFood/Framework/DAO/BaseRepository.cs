@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyFood.Framework.Contracts.DAO;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MyFood.Framework.DAO
@@ -17,6 +18,11 @@ namespace MyFood.Framework.DAO
         public TModel GetById(String Id)
         {
             return null;
+        }
+
+        public IEnumerable<TModel> All()
+        {
+            return Set.AsEnumerable();
         }
     }
 }

@@ -11,6 +11,7 @@ namespace MyFood.Framework.DAO
     public class MyFoodContext : DbContext
     {
         public DbSet<Company> Companies { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
         public MyFoodContext(DbContextOptions<MyFoodContext> options) : base(options)
         {
 

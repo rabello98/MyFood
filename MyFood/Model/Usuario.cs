@@ -1,12 +1,12 @@
-﻿using System;
+﻿
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.Serialization;
 
 namespace MyFood.Model
 {
-    [Table("COMPANY")]
-    public class Company
+    [Table("CAD_USUARIO")]
+    public class Usuario
     {
         [Key]
         [Column("ID")]
