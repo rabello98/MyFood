@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using MyFood.Framework.Contracts.AppStart;
 using MyFood.Framework.Contracts.DAO;
 using MyFood.Framework.DAO;
 using SimpleInjector;
@@ -22,6 +23,9 @@ namespace MyFood.Framework.AppStart
         private static void InitializeContainer(Container container)
         {
             container.Register(typeof(IRepository<>), typeof(BaseRepository<>), Lifestyle.Scoped);
+
+            var resolver = new DependencyInjectionFacade(container);
+            container.RegisterInstance<IDependencyInjectionFacade>(resolver);
         }
 
         private static void ConfigAutoMapper(Container container)

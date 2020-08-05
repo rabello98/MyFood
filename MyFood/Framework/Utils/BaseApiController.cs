@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using MyFood.Framework.Contracts.AppStart;
 using MyFood.Framework.Contracts.DAO;
 
 namespace MyFood.Framework.Utils
@@ -13,11 +14,14 @@ namespace MyFood.Framework.Utils
     {
         protected virtual IRepository<TModel> Repository { get; set; }
         protected virtual IMapper Mapper { get; set; }
+        IDependencyInjectionFacade Resolver { get; set; }
 
-        public BaseApiController(IRepository<TModel> repository, IMapper mapper)
+
+        public BaseApiController(IRepository<TModel> repository, IMapper mapper, IDependencyInjectionFacade resolver)
         {
             Repository = repository;
             Mapper = mapper;
+            Resolver = resolver;
         }
 
         [HttpGet]
