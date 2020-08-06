@@ -18,5 +18,10 @@ namespace MyFood.Framework.Context
         {
             return Container.GetInstance(type);
         }
+
+        public TService GetService<TService>()
+        {
+            return Container.GetService<TService>();
+        }
     }
 }

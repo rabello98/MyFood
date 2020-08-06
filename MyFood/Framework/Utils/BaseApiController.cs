@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using MyFood.Framework.Contracts.Context;
 using MyFood.Framework.Contracts.DAO;
-using MyFood.Model;
-using MyFood.ViewModel;
+using System;
+using System.Linq;
 
 namespace MyFood.Framework.Utils
 {
