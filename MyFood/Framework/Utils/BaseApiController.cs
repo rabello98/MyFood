@@ -33,35 +33,70 @@ namespace MyFood.Framework.Utils
         [HttpGet]
         public virtual IQueryable<TEntity> Get()
         {
-            return Repository.All().ProjectTo<TEntity>(Mapper.ConfigurationProvider);
+            try
+            {
+                return Repository.All().ProjectTo<TEntity>(Mapper.ConfigurationProvider);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         [HttpGet("{id}")]
         public virtual TEntity Get(int id)
         {
-            var data = Repository.GetById(id);
-            return Mapper.Map<TModel, TEntity>(data);
+            try
+            {
+                var data = Repository.GetById(id);
+                return Mapper.Map<TModel, TEntity>(data);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         [HttpPost]
         public virtual void Post(TEntity entity)
         {
-            var data = Mapper.Map<TEntity, TModel>(entity);
-            Repository.Insert(data);
+            try
+            {
+                var data = Mapper.Map<TEntity, TModel>(entity);
+                Repository.Insert(data);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         [HttpPut("{id}")]
         public virtual void Put(int id, TEntity entity)
         {
-            var data = Repository.GetById(id);
-            Mapper.Map(entity, data);
-            Repository.Update(data);
+            try
+            {
+                var data = Repository.GetById(id);
+                Mapper.Map(entity, data);
+                Repository.Update(data);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         [HttpDelete("{id}")]
         public virtual void Delete(int id)
         {
-            Repository.DeleteById(id);
+            try
+            {
+                Repository.DeleteById(id);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }

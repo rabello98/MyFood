@@ -16,27 +16,62 @@ namespace MyFood.Framework.DAO
         }
         public TModel GetById(Int64 id)
         {
-            return Set.Find(id);
+            try
+            {
+                return Set.Find(id);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public IQueryable<TModel> All()
         {
-            return Set;
+            try
+            {
+                return Set;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public void Insert(TModel data)
         {
-            Set.Add(data);
+            try
+            {
+                Set.Add(data);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public void Update(TModel data)
         {
-            Context.Entry(data).State = EntityState.Modified;
+            try
+            {
+                Context.Entry(data).State = EntityState.Modified;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public void Delete(TModel data)
         {
-            Set.Remove(data);
+            try
+            {
+                Set.Remove(data);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public void DeleteById(Int64 id)
@@ -47,7 +82,14 @@ namespace MyFood.Framework.DAO
 
         public void SaveChanges()
         {
-            Context.SaveChanges();
+            try
+            {
+                Context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }
