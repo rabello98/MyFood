@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -12,7 +13,9 @@ namespace MyFood.Model
         public Int64 Id { get; set; }
 
         [Column("USUARIO_ID")]
+        [ForeignKey("Usuario")]
         public Int64 UsuarioId { get; set; }
+        public Usuario Usuario { get; set; }
 
         [Column("VALOR_TOTAL")]
         public Decimal ValorTotal { get; set; }
@@ -25,5 +28,7 @@ namespace MyFood.Model
 
         [Column("FINALIZADO")]
         public String Finalizado { get; set; }
+
+        public IEnumerable<PedidoProduto> Produtos { get; set; }
     }
 }

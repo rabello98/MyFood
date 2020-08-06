@@ -12,10 +12,14 @@ namespace MyFood.Model
         public Int64 Id { get; set; }
 
         [Column("PEDIDO_ID")]
+        [ForeignKey("Pedido")]
         public Int64 PedidoId { get; set; }
+        public Pedido Pedido { get; set; }
 
         [Column("PRODUTO_ID")]
-        public String ProdutoId { get; set; }
+        [ForeignKey("Produto")]
+        public Int64 ProdutoId { get; set; }
+        public Produto Produto { get; set; }
 
         [Column("QUANTIDADE")]
         public Int64 Quantidade { get; set; }

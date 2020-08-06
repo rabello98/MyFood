@@ -10,6 +10,8 @@ namespace MyFood.ViewModel
 
         public Int64 EmpresaId { get; set; }
 
+        public EmpresaView Empresa { get; set; }
+
         public String Nome { get; set; }
 
         public String Descricao { get; set; }
