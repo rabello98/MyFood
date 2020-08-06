@@ -15,7 +15,7 @@ namespace MyFood.ViewModel
         [Required]
         public Int64 EmpresaId { get; set; }
 
-        public EmpresaView Empresa { get; set; }
+        public String EmpresaNomeFantasia { get; set; }
 
         [Required]
         public String Nome { get; set; }
@@ -25,7 +25,5 @@ namespace MyFood.ViewModel
 
         [Required]
         public Decimal Preco { get; set; }
-
-        public IEnumerable<PedidoProdutoView> Pedidos {get; set;}
     }
 }

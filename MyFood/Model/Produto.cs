@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyFood.Framework.Attribures;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,6 +16,7 @@ namespace MyFood.Model
         [Column("EMPRESA_ID")]
         [ForeignKey("Empresa")]
         public Int64 EmpresaId { get; set; }
+        [IgnoreMap]
         public Empresa Empresa { get; set; }
 
         [Column("NOME")]
@@ -26,6 +28,7 @@ namespace MyFood.Model
         [Column("PRECO")]
         public Decimal Preco { get; set; }
 
+        [IgnoreMap]
         public IEnumerable<PedidoProduto> Pedidos { get; set; }
     }
 }

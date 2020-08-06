@@ -13,6 +13,7 @@ using SimpleInjector;
 using System;
 using System.Linq;
 using System.Reflection;
+using MyFood.Framework.Extensions;
 
 namespace MyFood.Framework.AppStart
 {
@@ -68,17 +69,9 @@ namespace MyFood.Framework.AppStart
             foreach (var type in types)
             {
                 var mapAttribute = type.GetCustomAttribute<MapToAttribute>();
-                cfg.CreateMap(type, mapAttribute.Type);
+                cfg.CreateMap(type, mapAttribute.Type).IgnoreMaps(type, mapAttribute.Type);
                 cfg.CreateMap(mapAttribute.Type, type);
             }
-
-            // Automapper is lost here ¯\_(ツ)_/¯
-            cfg.CreateMap<PedidoProdutoView, PedidoProduto>()
-                .ForMember(m => m.Pedido, opt => opt.MapFrom(s => s.PedidoView))
-                .ForMember(m => m.Produto, opt => opt.MapFrom(s => s.ProdutoView));
-            cfg.CreateMap<PedidoProduto, PedidoProdutoView> ()
-                .ForMember(m => m.PedidoView, opt => opt.MapFrom(s => s.Pedido))
-                .ForMember(m => m.ProdutoView, opt => opt.MapFrom(s => s.Produto));
         }
     }
 }
