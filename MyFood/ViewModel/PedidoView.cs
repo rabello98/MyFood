@@ -3,6 +3,7 @@ using MyFood.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace MyFood.ViewModel
 {
@@ -14,7 +15,9 @@ namespace MyFood.ViewModel
 
         public Int64 UsuarioId { get; set; }
 
-        public Decimal ValorTotal { get; set; }
+        public String UsuarioCpf { get; set; }
+
+        public Decimal ValorTotal { get; }
 
         public String FormaPagamento { get; set; }
 

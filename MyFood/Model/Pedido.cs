@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace MyFood.Model
 {
@@ -10,6 +11,7 @@ namespace MyFood.Model
     public class Pedido
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("ID")]
         public Int64 Id { get; set; }
 
@@ -18,7 +20,6 @@ namespace MyFood.Model
         public Int64 UsuarioId { get; set; }
         [IgnoreMap]
         public Usuario Usuario { get; set; }
-
         [Column("VALOR_TOTAL")]
         public Decimal ValorTotal { get; set; }
 

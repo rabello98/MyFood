@@ -9,6 +9,7 @@ namespace MyFood.Model
     public class Usuario
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("ID")]
         public Int64 Id { get; set; }
 

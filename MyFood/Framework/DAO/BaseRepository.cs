@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyFood.Framework.Contracts.DAO;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MyFood.Framework.DAO
@@ -26,11 +28,23 @@ namespace MyFood.Framework.DAO
             }
         }
 
-        public IQueryable<TModel> All()
+        public IQueryable<TModel> Query()
         {
             try
             {
                 return Set;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public IList<TModel> All()
+        {
+            try
+            {
+                return Set.ToList();
             }
             catch (Exception e)
             {
@@ -43,6 +57,18 @@ namespace MyFood.Framework.DAO
             try
             {
                 Set.Add(data);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public void Attach(TModel data)
+        {
+            try
+            {
+                Set.Attach(data);
             }
             catch (Exception e)
             {

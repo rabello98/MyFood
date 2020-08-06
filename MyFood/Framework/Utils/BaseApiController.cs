@@ -33,7 +33,7 @@ namespace MyFood.Framework.Utils
         {
             try
             {
-                return Repository.All().ProjectTo<TEntity>(Mapper.ConfigurationProvider);
+                return Repository.Query().ProjectTo<TEntity>(Mapper.ConfigurationProvider);
             }
             catch (Exception e)
             {
