@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using MyFood.Framework.Contracts.Context;
 using MyFood.Framework.Contracts.DAO;
 using MyFood.Framework.Utils;
@@ -13,6 +14,12 @@ namespace MyFood.Controllers
             IMapper mapper, IMyFoodAppContext appContext) : base(repository, mapper, appContext)
         {
 
+        }
+
+        [HttpPost]
+        public override void Post(dynamic value)
+        {
+            var json = value.ToString();
         }
     }
 }

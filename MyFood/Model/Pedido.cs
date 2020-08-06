@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,6 +16,7 @@ namespace MyFood.Model
         [Column("USUARIO_ID")]
         [ForeignKey("Usuario")]
         public Int64 UsuarioId { get; set; }
+        [IgnoreMap]
         public Usuario Usuario { get; set; }
 
         [Column("VALOR_TOTAL")]

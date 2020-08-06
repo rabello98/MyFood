@@ -3,8 +3,7 @@ using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using MyFood.Framework.Contracts.Context;
 using MyFood.Framework.Contracts.DAO;
-using MyFood.Model;
-using MyFood.ViewModel;
+using Newtonsoft.Json;
 using System;
 using System.Linq;
 
@@ -57,12 +56,17 @@ namespace MyFood.Framework.Utils
         }
 
         [HttpPost]
-        public virtual void Post(TEntity entity)
+        public virtual void Post([FromBody] dynamic value)
         {
             try
             {
+                var json = value.ToString();
+                var entity = JsonConvert.DeserializeObject<TEntity>(json);
+
                 var data = Mapper.Map<TEntity, TModel>(entity);
                 Repository.Insert(data);
+
+                Repository.SaveChanges();
             }
             catch (Exception e)
             {
@@ -71,13 +75,18 @@ namespace MyFood.Framework.Utils
         }
 
         [HttpPut("{id}")]
-        public virtual void Put(int id, TEntity entity)
+        public virtual void Put(int id, [FromBody] dynamic value)
         {
             try
             {
+                var json = value.ToString();
+                var entity = JsonConvert.DeserializeObject<TEntity>(json);
+
                 var data = Repository.GetById(id);
                 Mapper.Map(entity, data);
                 Repository.Update(data);
+
+                Repository.SaveChanges();
             }
             catch (Exception e)
             {
@@ -91,6 +100,8 @@ namespace MyFood.Framework.Utils
             try
             {
                 Repository.DeleteById(id);
+
+                Repository.SaveChanges();
             }
             catch (Exception e)
             {
