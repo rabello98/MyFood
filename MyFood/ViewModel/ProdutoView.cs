@@ -1,8 +1,12 @@
-﻿using System;
+﻿using MyFood.Framework.Attribures;
+using MyFood.Model;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace MyFood.ViewModel
 {
+    [MapTo(typeof(Produto))]
     public class ProdutoView
     {
         [Key]
@@ -17,5 +21,7 @@ namespace MyFood.ViewModel
         public String Descricao { get; set; }
 
         public Decimal Preco { get; set; }
+
+        public IEnumerable<PedidoProdutoView> Pedidos {get; set;}
     }
 }

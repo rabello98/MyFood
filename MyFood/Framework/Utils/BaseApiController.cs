@@ -3,6 +3,8 @@ using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using MyFood.Framework.Contracts.Context;
 using MyFood.Framework.Contracts.DAO;
+using MyFood.Model;
+using MyFood.ViewModel;
 using System;
 using System.Linq;
 

@@ -1,8 +1,12 @@
-﻿using System;
+﻿using MyFood.Framework.Attribures;
+using MyFood.Model;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace MyFood.ViewModel
 {
+    [MapTo(typeof(Pedido))]
     public class PedidoView
     {
         [Key]
@@ -18,5 +22,7 @@ namespace MyFood.ViewModel
         public String Pago { get; set; }
 
         public String Finalizado { get; set; }
+
+        public IEnumerable<PedidoProdutoView> Produtos { get; set; }
     }
 }

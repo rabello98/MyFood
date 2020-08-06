@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MyFood.Framework.Attribures;
 using MyFood.Framework.Context;
 using MyFood.Framework.Contracts.Context;
 using MyFood.Framework.Contracts.DAO;
@@ -8,6 +10,9 @@ using MyFood.Framework.DAO;
 using MyFood.Model;
 using MyFood.ViewModel;
 using SimpleInjector;
+using System;
+using System.Linq;
+using System.Reflection;
 
 namespace MyFood.Framework.AppStart
 {
@@ -43,22 +48,37 @@ namespace MyFood.Framework.AppStart
 
         private static void ConfigAutoMapper(Container container)
         {
-            var config = new AutoMapper.MapperConfiguration(cfg =>
+            var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<UsuarioView, Usuario>();
-                cfg.CreateMap<Usuario, UsuarioView>();
-
-                cfg.CreateMap<EmpresaView, Empresa>();
-                cfg.CreateMap<Empresa, EmpresaView>();
-
-                cfg.CreateMap<ProdutoView, Produto>();
-                cfg.CreateMap<Produto, ProdutoView>();
+                InitializeAutoMapper(cfg);
             });
             config.AssertConfigurationIsValid();
 
-            var mapper = new AutoMapper.Mapper(config, container.GetInstance);
+            var mapper = new Mapper(config, container.GetInstance);
 
-            container.RegisterInstance<AutoMapper.IMapper>(mapper);
+            container.RegisterInstance<IMapper>(mapper);
+        }
+
+        private static void InitializeAutoMapper(IMapperConfigurationExpression cfg)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+
+            var types = assembly.GetTypes().Where(t => t.GetCustomAttribute<MapToAttribute>() != null);
+
+            foreach (var type in types)
+            {
+                var mapAttribute = type.GetCustomAttribute<MapToAttribute>();
+                cfg.CreateMap(type, mapAttribute.Type);
+                cfg.CreateMap(mapAttribute.Type, type);
+            }
+
+            // Automapper is lost here ¯\_(ツ)_/¯
+            cfg.CreateMap<PedidoProdutoView, PedidoProduto>()
+                .ForMember(m => m.Pedido, opt => opt.MapFrom(s => s.PedidoView))
+                .ForMember(m => m.Produto, opt => opt.MapFrom(s => s.ProdutoView));
+            cfg.CreateMap<PedidoProduto, PedidoProdutoView> ()
+                .ForMember(m => m.PedidoView, opt => opt.MapFrom(s => s.Pedido))
+                .ForMember(m => m.ProdutoView, opt => opt.MapFrom(s => s.Produto));
         }
     }
 }

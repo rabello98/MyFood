@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -24,5 +25,7 @@ namespace MyFood.Model
 
         [Column("PRECO")]
         public Decimal Preco { get; set; }
+
+        public IEnumerable<PedidoProduto> Pedidos { get; set; }
     }
 }

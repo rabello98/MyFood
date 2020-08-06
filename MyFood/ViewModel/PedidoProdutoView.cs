@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MyFood.Framework.Attribures;
+using MyFood.Model;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace MyFood.ViewModel
@@ -10,9 +12,8 @@ namespace MyFood.ViewModel
 
         public Int64 PedidoId { get; set; }
         public PedidoView PedidoView { get; set; }
-        public String ProdutoId { get; set; }
+        public Int64 ProdutoId { get; set; }
         public ProdutoView ProdutoView { get; set; }
-
         public Int64 Quantidade { get; set; }
     }
 }
