@@ -12,14 +12,18 @@ namespace MyFood.ViewModel
         [Key]
         public Int64 Id { get; set; }
 
+        [Required]
         public Int64 EmpresaId { get; set; }
 
         public EmpresaView Empresa { get; set; }
 
+        [Required]
         public String Nome { get; set; }
 
+        [Required]
         public String Descricao { get; set; }
 
+        [Required]
         public Decimal Preco { get; set; }
 
         public IEnumerable<PedidoProdutoView> Pedidos {get; set;}

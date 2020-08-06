@@ -11,10 +11,13 @@ namespace MyFood.ViewModel
         [Key]
         public Int64 Id { get; set; }
 
+        [Required]
         public String Nome { get; set; }
 
+        [Required]
         public String Email { get; set; }
 
+        [Required]
         public String Cpf { get; set; }
     }
 }
