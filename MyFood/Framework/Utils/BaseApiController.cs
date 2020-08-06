@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using MyFood.Framework.Contracts.Context;
 using MyFood.Framework.Contracts.DAO;
+using MyFood.Model;
+using MyFood.ViewModel;
 
 namespace MyFood.Framework.Utils
 {
@@ -27,31 +31,37 @@ namespace MyFood.Framework.Utils
         }
 
         [HttpGet]
-        public virtual IEnumerable<TModel> Get()
+        public virtual IQueryable<TEntity> Get()
         {
-            var res = Repository.All();
-            return res;
+            return Repository.All().ProjectTo<TEntity>(Mapper.ConfigurationProvider);
         }
 
         [HttpGet("{id}")]
-        public virtual string Get(int id)
+        public virtual TEntity Get(int id)
         {
-            return typeof(TModel).ToString();
+            var data = Repository.GetById(id);
+            return Mapper.Map<TModel, TEntity>(data);
         }
 
         [HttpPost]
-        public virtual void Post([FromBody] string value)
+        public virtual void Post(TEntity entity)
         {
+            var data = Mapper.Map<TEntity, TModel>(entity);
+            Repository.Insert(data);
         }
 
         [HttpPut("{id}")]
-        public virtual void Put(int id, [FromBody] string value)
+        public virtual void Put(int id, TEntity entity)
         {
+            var data = Repository.GetById(id);
+            Mapper.Map(entity, data);
+            Repository.Update(data);
         }
 
         [HttpDelete("{id}")]
         public virtual void Delete(int id)
         {
+            Repository.DeleteById(id);
         }
     }
 }

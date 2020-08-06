@@ -7,7 +7,12 @@ namespace MyFood.Framework.Contracts.DAO
 {
     public interface IRepository<TModel> where TModel : class
     {
-        TModel GetById(String id);
-        IEnumerable<TModel> All();
+        TModel GetById(Int64 id);
+        IQueryable<TModel> All();
+        void Insert(TModel data);
+        void Update(TModel data);
+        void Delete(TModel data);
+        void DeleteById(Int64 id);
+        void SaveChanges();
     }
 }

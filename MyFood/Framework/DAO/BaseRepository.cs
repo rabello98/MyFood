@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyFood.Framework.Contracts.DAO;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace MyFood.Framework.DAO
@@ -15,14 +14,40 @@ namespace MyFood.Framework.DAO
             Context = context;
             Set = Context.Set<TModel>();
         }
-        public TModel GetById(String Id)
+        public TModel GetById(Int64 id)
         {
-            return null;
+            return Set.Find(id);
         }
 
-        public IEnumerable<TModel> All()
+        public IQueryable<TModel> All()
         {
-            return Set.AsEnumerable();
+            return Set;
+        }
+
+        public void Insert(TModel data)
+        {
+            Set.Add(data);
+        }
+
+        public void Update(TModel data)
+        {
+            Context.Entry(data).State = EntityState.Modified;
+        }
+
+        public void Delete(TModel data)
+        {
+            Set.Remove(data);
+        }
+
+        public void DeleteById(Int64 id)
+        {
+            var data = GetById(id);
+            Delete(data);
+        }
+
+        public void SaveChanges()
+        {
+            Context.SaveChanges();
         }
     }
 }

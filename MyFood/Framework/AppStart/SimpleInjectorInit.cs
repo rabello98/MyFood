@@ -5,6 +5,8 @@ using MyFood.Framework.Context;
 using MyFood.Framework.Contracts.Context;
 using MyFood.Framework.Contracts.DAO;
 using MyFood.Framework.DAO;
+using MyFood.Model;
+using MyFood.ViewModel;
 using SimpleInjector;
 
 namespace MyFood.Framework.AppStart
@@ -43,7 +45,14 @@ namespace MyFood.Framework.AppStart
         {
             var config = new AutoMapper.MapperConfiguration(cfg =>
             {
-                // Map types here
+                cfg.CreateMap<UsuarioView, Usuario>();
+                cfg.CreateMap<Usuario, UsuarioView>();
+
+                cfg.CreateMap<EmpresaView, Empresa>();
+                cfg.CreateMap<Empresa, EmpresaView>();
+
+                cfg.CreateMap<ProdutoView, Produto>();
+                cfg.CreateMap<Produto, ProdutoView>();
             });
             config.AssertConfigurationIsValid();
 
