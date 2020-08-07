@@ -21,5 +21,14 @@ namespace MyFood.Model
 
         [Column("CPF")]
         public String Cpf { get; set; }
+
+        [Column("ENDERECO")]
+        public String Endereco { get; set; }
+
+        [Column("NUMERO")]
+        public String Numero { get; set; }
+
+        [Column("CEP")]
+        public String Cep { get; set; }  
     }
 }

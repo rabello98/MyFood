@@ -19,5 +19,14 @@ namespace MyFood.ViewModel
 
         [Required]
         public String Cpf { get; set; }
+
+        [Required]
+        public String Endereco { get; set; }
+
+        [Required]
+        public String Numero { get; set; }
+
+        [Required]
+        public String Cep { get; set; }
     }
 }
