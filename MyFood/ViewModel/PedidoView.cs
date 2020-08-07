@@ -15,9 +15,11 @@ namespace MyFood.ViewModel
 
         public Int64 UsuarioId { get; set; }
 
+        public String UsuarioNome { get; set; }
+
         public String UsuarioCpf { get; set; }
 
-        public Decimal ValorTotal { get; }
+        public Decimal ValorTotal { get; set; }
 
         public String FormaPagamento { get; set; }
 
