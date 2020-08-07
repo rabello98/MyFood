@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace MyFood.Framework.Filters
@@ -19,6 +20,7 @@ namespace MyFood.Framework.Filters
             {
                 context.Result = new JsonResult(new { Status = "error", context.Exception.Message, 
                     context.Exception.StackTrace, Inner = context.Exception.InnerException });
+                context.HttpContext.Response.StatusCode = (Int32)HttpStatusCode.BadRequest;
                 context.ExceptionHandled = true;
             }
         }
