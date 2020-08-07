@@ -9,7 +9,8 @@ namespace MyFood.Service
         {
             if (String.IsNullOrEmpty(pagamentoCartao.NumeroCartao) 
                 || String.IsNullOrEmpty(pagamentoCartao.CodigoSeguranca)
-                || pagamentoCartao.DataVencimento == null)
+                || String.IsNullOrEmpty(pagamentoCartao.MesVencimento)
+                || String.IsNullOrEmpty(pagamentoCartao.AnoVencimento))
             {
                 throw new ArgumentException("Invalid information of credit card");
             }
