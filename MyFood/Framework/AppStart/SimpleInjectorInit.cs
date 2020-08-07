@@ -14,6 +14,8 @@ using System;
 using System.Linq;
 using System.Reflection;
 using MyFood.Framework.Extensions;
+using MyFood.Framework.Contracts.Service;
+using MyFood.Service;
 
 namespace MyFood.Framework.AppStart
 {
@@ -39,6 +41,7 @@ namespace MyFood.Framework.AppStart
         private static void InitializeContainer(Container container)
         {
             container.Register(typeof(IRepository<>), typeof(BaseRepository<>), Lifestyle.Scoped);
+            container.Register<ICreditCardValidatorService, CreditCardValidatorService>(Lifestyle.Scoped);
 
             var resolver = new DependencyInjectionFacade(container);
             container.RegisterInstance<IDependencyInjectionFacade>(resolver);
