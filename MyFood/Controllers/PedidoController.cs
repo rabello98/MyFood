@@ -68,11 +68,11 @@ namespace MyFood.Controllers
 
                     transaction.Complete();
 
-                    return new JsonResult(new { Status = "success", Message = "Pedido realizado com sucesso! utilize seu CPF para consultar" });
+                    return Success("Pedido realizado com sucesso! utilize seu CPF para consultar seus pedidos" );
                 }
                 catch(Exception e)
                 {
-                    return new JsonResult(new { Status = "error", Message = e.Message });
+                    throw e;
                 }
             }
         }

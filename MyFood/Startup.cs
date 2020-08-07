@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyFood.Framework.AppStart;
+using MyFood.Framework.Filters;
 using SimpleInjector;
 
 namespace MyFood
@@ -20,7 +21,8 @@ namespace MyFood
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers(options =>
+                options.Filters.Add(new HttpResponseExceptionFilter()));
             services.AddMvc();
 
             SimpleInjectorInit.Initialize(container, services, Configuration);

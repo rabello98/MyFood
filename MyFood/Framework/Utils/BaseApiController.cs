@@ -68,11 +68,11 @@ namespace MyFood.Framework.Utils
 
                 Repository.SaveChanges();
 
-                return new JsonResult(new { Status = "success" });
+                return Success();
             }
             catch (Exception e)
             {
-                return new JsonResult(new { Status = "error", Message = e.Message });
+                throw e;
             }
         }
 
@@ -90,11 +90,11 @@ namespace MyFood.Framework.Utils
 
                 Repository.SaveChanges();
 
-                return new JsonResult(new { Status = "success" });
+                return Success();
             }
             catch (Exception e)
             {
-                return new JsonResult(new { Status = "error", Message = e.Message });
+                throw e;
             }
         }
 
@@ -107,12 +107,17 @@ namespace MyFood.Framework.Utils
 
                 Repository.SaveChanges();
 
-                return new JsonResult(new { Status = "success" });
+                return Success();
             }
             catch (Exception e)
             {
-                return new JsonResult(new { Status = "error", Message = e.Message });
+                throw e;
             }
+        }
+
+        protected virtual JsonResult Success(String message = "Operation successfully executed")
+        {
+            return new JsonResult(new { Status = "success", Message = message });
         }
     }
 }
