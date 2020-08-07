@@ -56,7 +56,7 @@ namespace MyFood.Framework.Utils
         }
 
         [HttpPost]
-        public virtual void Post([FromBody] dynamic value)
+        public virtual JsonResult Post([FromBody] dynamic value)
         {
             try
             {
@@ -67,15 +67,17 @@ namespace MyFood.Framework.Utils
                 Repository.Insert(data);
 
                 Repository.SaveChanges();
+
+                return new JsonResult(new { Status = "success" });
             }
             catch (Exception e)
             {
-                throw e;
+                return new JsonResult(new { Status = "error", Message = e.Message });
             }
         }
 
         [HttpPut("{id}")]
-        public virtual void Put(int id, [FromBody] dynamic value)
+        public virtual JsonResult Put(int id, [FromBody] dynamic value)
         {
             try
             {
@@ -87,25 +89,29 @@ namespace MyFood.Framework.Utils
                 Repository.Update(data);
 
                 Repository.SaveChanges();
+
+                return new JsonResult(new { Status = "success" });
             }
             catch (Exception e)
             {
-                throw e;
+                return new JsonResult(new { Status = "error", Message = e.Message });
             }
         }
 
         [HttpDelete("{id}")]
-        public virtual void Delete(int id)
+        public virtual JsonResult Delete(int id)
         {
             try
             {
                 Repository.DeleteById(id);
 
                 Repository.SaveChanges();
+
+                return new JsonResult(new { Status = "success" });
             }
             catch (Exception e)
             {
-                throw e;
+                return new JsonResult(new { Status = "error", Message = e.Message });
             }
         }
     }

@@ -30,7 +30,7 @@ namespace MyFood.Controllers
         }
 
         [HttpPost]
-        public override void Post(dynamic value)
+        public override JsonResult Post(dynamic value)
         {
             using (var transaction = new TransactionScope())
             {
@@ -67,10 +67,12 @@ namespace MyFood.Controllers
                     Repository.SaveChanges();
 
                     transaction.Complete();
+
+                    return new JsonResult(new { Status = "success", Message = "Pedido realizado com sucesso! utilize seu CPF para consultar" });
                 }
                 catch(Exception e)
                 {
-                    throw e;
+                    return new JsonResult(new { Status = "error", Message = e.Message });
                 }
             }
         }
