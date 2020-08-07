@@ -21,6 +21,7 @@ namespace MyFood
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddMvc();
 
             SimpleInjectorInit.Initialize(container, services, Configuration);
         }
